@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask ,render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
 import os
@@ -15,10 +15,30 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
+class document(db.Model):
+    __tablename__ = 'document'
+    IDDOC = db.Column(db.Integer, primary_key=True)
+    TITRE = db.Column(db.String(50), nullable=False)
+    ANNEEPUB = db.Column(db.Integer, nullable=False)
+    EDITEUR = db.Column(db.String(50), nullable=False)
 
+    def __repr__(self):
+        return f"<document {self.TITRE}>"
+@app.route('/add-document')
+def add_document():
+    return render_template('add_document.html')  # Or your desired logic
 @app.route('/')
-def hello_world():
-    return "Hello, Salma!"
+def home():
+    return """
+    <h1>Bienvenue à la Gestion Bibliothèque</h1>
+    <p><a href='/documents'>Voir les Documents</a></p>
+    """
+
+# Route for listing documents
+@app.route('/documents')
+def list_documents():
+    documents = document.query.all()
+    return render_template('document.html', documents=documents)
 
 # Run the application if this file is executed directly
 if __name__ == '__main__':
