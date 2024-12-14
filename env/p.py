@@ -18,7 +18,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def hello_world():
-    return "Hello, World!"
+    return "Hello, Salma!"
 
 # Run the application if this file is executed directly
 if __name__ == '__main__':
