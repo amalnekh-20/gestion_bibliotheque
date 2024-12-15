@@ -39,7 +39,24 @@ def list_documents():
     return render_template('document.html', documents=documents)
 @app.route('/add-document')
 def add_document():
-    return render_template('edit_document.html', action='Ajouter')
+    return render_template('ajouterDoc.html', action='Ajouter')
+@app.route('/save-document', methods=['POST'])
+def save_document():
+    iddoc = request.form['IDDOC']
+    titre = request.form['TITRE']
+    annee_pub = request.form['ANNEEPUB']
+    editeur = request.form['EDITEUR']
+    
+    # Crée une instance du modèle document
+    new_document = document(IDDOC=iddoc, TITRE=titre, ANNEEPUB=annee_pub, EDITEUR=editeur)
+    
+    # Ajoute à la base de données
+    db.session.add(new_document)
+    db.session.commit()
+    
+    return redirect(url_for('list_documents'))
+
+
 
 # Page de modification de document
 @app.route('/edit-document/<int:document_id>', methods=['GET', 'POST'])
@@ -49,7 +66,7 @@ def edit_document(document_id):
     if request.method == 'POST':
         document.TITRE = request.form['titre']
         document.ANNEEPUB = request.form['annee']
-        document.aEDITEUR = request.form['editeur']
+        document.EDITEUR = request.form['editeur']
 
         db.session.commit()
         return redirect(url_for('index'))
@@ -59,10 +76,11 @@ def edit_document(document_id):
 # Supprimer un document
 @app.route('/delete-document/<int:document_id>')
 def delete_document(document_id):
-    document = document.query.get_or_404(document_id)
-    db.session.delete(document)
+    document_obj = document.query.get_or_404(document_id)
+    db.session.delete(document_obj)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('list_documents'))
+
 
 # Run the application if this file is executed directly
 if __name__ == '__main__':
