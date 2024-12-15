@@ -1,0 +1,113 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9; /* Light gray background for the whole page */
+}
+
+.container {
+  width: 80%;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fef9e4; /* A soft yellow background */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for container */
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333; /* Dark text color */
+  margin-bottom: 30px;
+  font-weight: 600; /* Bold for emphasis */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem; /* Larger font for better readability */
+}
+
+.table th {
+  background-color: #e0e0e0;
+  font-weight: 600; /* Make the header text bold */
+}
+
+.table tr:nth-child(even) {
+  background-color: #fafafa; /* Light gray background for even rows */
+}
+
+.actions a {
+  margin: 0 8px;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+.btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: inline-block;
+  color: white;
+  background-color: #28a745; /* Green background for general buttons */
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.list-doc {
+  margin-top: 50px;
+}
+
+.text-right {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.text-right a {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.text-right a:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

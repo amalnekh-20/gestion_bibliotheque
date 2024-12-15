@@ -24,9 +24,7 @@ class document(db.Model):
 
     def __repr__(self):
         return f"<document {self.TITRE}>"
-@app.route('/add-document')
-def add_document():
-    return render_template('add_document.html')  # Or your desired logic
+
 @app.route('/')
 def home():
     return """
@@ -39,6 +37,32 @@ def home():
 def list_documents():
     documents = document.query.all()
     return render_template('document.html', documents=documents)
+@app.route('/add-document')
+def add_document():
+    return render_template('edit_document.html', action='Ajouter')
+
+# Page de modification de document
+@app.route('/edit-document/<int:document_id>', methods=['GET', 'POST'])
+def edit_document(document_id):
+    document = document.query.get_or_404(document_id)
+
+    if request.method == 'POST':
+        document.TITRE = request.form['titre']
+        document.ANNEEPUB = request.form['annee']
+        document.aEDITEUR = request.form['editeur']
+
+        db.session.commit()
+        return redirect(url_for('index'))
+
+    return render_template('edit_document.html', document=document, action='Modifier')
+
+# Supprimer un document
+@app.route('/delete-document/<int:document_id>')
+def delete_document(document_id):
+    document = document.query.get_or_404(document_id)
+    db.session.delete(document)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 # Run the application if this file is executed directly
 if __name__ == '__main__':

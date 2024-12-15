@@ -4,58 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Documents</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgb(236, 214, 174);
-            
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        .table th {
-            background-color: #f4f4f4;
-        }
-        .actions a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-        }
-        .btn-edit {
-            background-color: #007bff;
-        }
-        .btn-delete {
-            background-color: #dc3545;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
     <div class="container">
         <h1>Liste des Documents</h1>
         <div class="text-right mb-3">
-            <a href="{{ url_for('add_document') }}" class="btn btn-primary">Ajouter un Nouveau Document</a>
+            <a href="{{ url_for('add_document') }}" class="btn">Ajouter un Nouveau Document</a>
         </div>
         <table class="table">
             <thead>
-                <tr>
+                <tr class=" list-doc">
                     <th>ID</th>
                     <th>Titre</th>
                     <th>Année de Publication</th>
@@ -69,7 +29,7 @@
                     <td>{{ doc.IDDOC }}</td>
                     <td>{{ doc.TITRE }}</td>
                     <td>{{ doc.ANNEEPUB }}</td>
-                    <td>{{ doc.aEDITEUR }}</td>
+                    <td>{{ doc.EDITEUR }}</td>
                     <td class="actions">
                         <a href="{{ url_for('edit_document', document_id=doc.IDDOC) }}" class="btn-edit">Modifier</a>
                         <a href="{{ url_for('delete_document', document_id=doc.IDDOC) }}" class="btn-delete">Supprimer</a>
