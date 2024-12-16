@@ -24,13 +24,19 @@ class document(db.Model):
 
     def __repr__(self):
         return f"<document {self.TITRE}>"
+class utilisateur(db.Model):
+    __tablename__ = 'utilisateur'
+    ID_UTIL = db.Column(db.Integer, primary_key=True)
+    NOM_U = db.Column(db.String(50), nullable=False)
+    PRENOM_U = db.Column(db.String(50), nullable=False)
+    CATEGORIE= db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f"<utilisateur {self.ID_UTIL}>"
 
 @app.route('/')
 def home():
-    return """
-    <h1>Bienvenue à la Gestion Bibliothèque</h1>
-    <p><a href='/documents'>Voir les Documents</a></p>
-    """
+    return render_template('home.html')
 
 # Route for listing documents
 @app.route('/documents')

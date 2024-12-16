@@ -1,0 +1,40 @@
+/* Ensure the body and html take up the entire viewport */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Image styling */
+.homepage-image {
+  position: absolute;  /* Position the image absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;  /* Make the image span the entire width */
+  height: 100%;  /* Make the image span the entire height */
+  object-fit: cover;  /* Ensure the image maintains its aspect ratio and covers the area */
+  z-index: -1;  /* Place the image behind other elements */
+}
+
+/* Center the link in the middle of the page */
+.centered-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 24px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: rgba(0, 0, 0, 0.7);  /* Darken background on hover */
+}
