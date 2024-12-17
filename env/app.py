@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import pymysql
 import os
 
+
 # Install pymysql as MySQLdb
 pymysql.install_as_MySQLdb()
 
@@ -15,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
-class document(db.Model):
+class Document(db.Model):
     __tablename__ = 'document'
     IDDOC = db.Column(db.Integer, primary_key=True)
     TITRE = db.Column(db.String(50), nullable=False)
@@ -23,38 +24,54 @@ class document(db.Model):
     EDITEUR = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
-        return f"<document {self.TITRE}>"
-class utilisateur(db.Model):
+        return f"<Document {self.TITRE}>"
+
+class Utilisateur(db.Model):
     __tablename__ = 'utilisateur'
     ID_UTIL = db.Column(db.Integer, primary_key=True)
     NOM_U = db.Column(db.String(50), nullable=False)
     PRENOM_U = db.Column(db.String(50), nullable=False)
-    CATEGORIE= db.Column(db.String(50), nullable=False)
+    CATEGORIE = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
-        return f"<utilisateur {self.ID_UTIL}>"
+        return f"<Utilisateur {self.ID_UTIL}>"
 
+class Exemplaire(db.Model):
+    __tablename__ = 'exemplaire'
+    ID_EXM = db.Column(db.Integer, primary_key=True)
+    IDDOC = db.Column(db.Integer, nullable=False)
+    NUMERO_ORD = db.Column(db.Integer, nullable=False)
+    DATE_ACHAT = db.Column(db.Date, nullable=False)
+    STATUT = db.Column(db.String(50), nullable=False)
+    ETAT = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f"<Exemplaire {self.ID_EXM}>"
+
+# Define routes
 @app.route('/')
 def home():
     return render_template('home.html')
 
-# Route for listing documents
 @app.route('/documents')
 def list_documents():
-    documents = document.query.all()
+    documents = Document.query.all()
     return render_template('document.html', documents=documents)
+
+
 @app.route('/add-document')
 def add_document():
     return render_template('ajouterDoc.html', action='Ajouter')
+
 @app.route('/save-document', methods=['POST'])
 def save_document():
-    iddoc = request.form['IDDOC']
+    #iddoc = request.form['IDDOC']
     titre = request.form['TITRE']
     annee_pub = request.form['ANNEEPUB']
     editeur = request.form['EDITEUR']
     
     # Crée une instance du modèle document
-    new_document = document(IDDOC=iddoc, TITRE=titre, ANNEEPUB=annee_pub, EDITEUR=editeur)
+    new_document = Document(TITRE=titre, ANNEEPUB=annee_pub, EDITEUR=editeur)
     
     # Ajoute à la base de données
     db.session.add(new_document)
@@ -63,11 +80,9 @@ def save_document():
     return redirect(url_for('list_documents'))
 
 
-
-# Page de modification de document
 @app.route('/edit-document/<int:document_id>', methods=['GET', 'POST'])
 def edit_document(document_id):
-    document = document.query.get_or_404(document_id)
+    document = Document.query.get_or_404(document_id)
 
     if request.method == 'POST':
         document.TITRE = request.form['titre']
@@ -75,19 +90,19 @@ def edit_document(document_id):
         document.EDITEUR = request.form['editeur']
 
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('list_documents'))
 
     return render_template('edit_document.html', document=document, action='Modifier')
+
 
 # Supprimer un document
 @app.route('/delete-document/<int:document_id>')
 def delete_document(document_id):
-    document_obj = document.query.get_or_404(document_id)
+    document_obj = Document.query.get_or_404(document_id)
     db.session.delete(document_obj)
     db.session.commit()
     return redirect(url_for('list_documents'))
 
 
-# Run the application if this file is executed directly
 if __name__ == '__main__':
     app.run(debug=True)

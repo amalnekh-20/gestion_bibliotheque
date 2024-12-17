@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">{{ action }} un Document</h1>
+        
+        <!-- Formulaire de modification -->
+        <form method="POST" action="{{ url_for('edit_document', document_id=document.IDDOC) }}">
+            <div class="form-group">
+                <label for="titre">Titre :</label>
+                <input type="text" class="form-control" id="titre" name="titre" value="{{ document.TITRE }}" required>
+            </div>
+            <div class="form-group">
+                <label for="annee">Année de Publication :</label>
+                <input type="number" class="form-control" id="annee" name="annee" value="{{ document.ANNEEPUB }}" required>
+            </div>
+            <div class="form-group">
+                <label for="editeur">Éditeur :</label>
+                <input type="text" class="form-control" id="editeur" name="editeur" value="{{ document.EDITEUR }}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <a href="{{ url_for('list_documents') }}" class="btn btn-default">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>
