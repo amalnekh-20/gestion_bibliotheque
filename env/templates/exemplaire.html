@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Exemplaires</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='exemplaire.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des Exemplaires</h1>
+        <div class="text-right mb-3">
+            <a href="{{ url_for('add_exemplaire') }}" class="btn">Ajouter un Nouveau Exemplaire</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr class=" list-exm">
+                    <th>ID</th>
+                    <th>ID Document</th>
+                    <th>Numero d'Ordre</th>
+                    <th>Date D'achat</th>
+                    <th>Statut</th>
+                    <th>Etat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exp in exemplaires %}
+                <tr>
+                    <td>{{ exp.ID_EXM }}</td>
+                    <td>{{ exp.IDDOC }}</td>
+                    <td>{{ exp.NUMERO_ORD }}</td>
+                    <td>{{ exp.DATE_ACHAT }}</td>
+                    <td>{{ exp.STATUT }}</td>
+                    <td>{{ exp.ETAT }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('edit_exemplaire', exemplaire_id=exp.ID_EXM) }}" class="btn-edit">Modifier</a>
+                        <a href="{{ url_for('delete_exemplaire', exemplaire_id=exp.ID_EXM) }}" class="btn-delete">Supprimer</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7">Aucun document trouvé.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+</body>
+</html>

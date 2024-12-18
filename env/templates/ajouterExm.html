@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJOUTER EXEMPLAIRE</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        /* Masquer le formulaire par défaut */
+        #formContainer {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>AJOUTER EXEMPLAIRE</h1>
+      
+        <!-- Formulaire d'ajout d'un exemplaire -->
+        <div id="formContainer">
+            <form method="POST" action="{{ url_for('save_exemplaire') }}">
+                <div class="form-group">
+                    <label for="iddoc">ID Document :</label>
+                    <select class="form-control" id="iddoc" name="IDDOC" required>
+                        <option value="">Sélectionnez un document</option>
+                        {% for document in documents %}
+                            <option value="{{ document.IDDOC }}">{{ document.IDDOC }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="numeroOrd">Numero D'ordre :</label>
+                    <input type="number" class="form-control" id="numeroOrd" name="NUMERO_ORD" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateAchat">Date D'Achat :</label>
+                    <input type="date" class="form-control" id="dateAchat" name="DATE_ACHAT" required>
+                </div>
+                <div class="form-group">
+                    <label for="statutExm">Statut :</label>
+                    <select class="form-control" id="statutExm" name="STATUT" required>
+                        <option value="">Sélectionnez un statut</option>
+                        <option value="En rayon">En rayon</option>
+                        <option value="En prêt">En prêt</option>
+                        <option value="En retard">En retard</option>
+                        <option value="En réserve">En réserve</option>
+                        <option value="En travaux">En travaux</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="etatExm">Etat:</label>
+                  <select class="form-control" id="etatExm" name="ETAT" required>
+                    <option value="">Sélectionnez un état</option> 
+                    <option value="neuf">Neuf</option>
+                    <option value="tres bon etat">Très bon état</option>
+                    <option value="bon etat">Bon état</option>
+                    <option value="usage">Usage</option>
+                    <option value="endommage">Endommagé</option>
+                </select>
+              </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Lorsque le bouton "Ajouter un Exemplaire" est cliqué, afficher le formulaire
+        document.getElementById('addButton').addEventListener('click', function() {
+            var formContainer = document.getElementById('formContainer');
+            // Si le formulaire est masqué, l'afficher, sinon le masquer
+            if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+                formContainer.style.display = 'block'; // Afficher le formulaire
+            } else {
+                formContainer.style.display = 'none'; // Masquer le formulaire
+            }
+        });
+    </script>
+</body>
+</html>
