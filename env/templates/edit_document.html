@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
+    <img src="{{ url_for('static', filename='images/photo.png') }}" class="homepage-image">
     <div class="container mt-4">
         <h1 class="text-center">{{ action }} un Document</h1>
         

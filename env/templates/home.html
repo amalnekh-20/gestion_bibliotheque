@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
   </head>
   <body>
-    <!-- Image covering the whole screen -->
-    <img src="{{ url_for('static', filename='images/photo.png') }}" alt="A description of the library photo" class="homepage-image">
+    <!-- Barre de navigation -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="/documents">Voir Les Documents</a></li>
+        <li><a href="/exemplaires">Voir Les Exemplaire</a></li>
+      </ul>
+    </nav>
+
+    <!-- Image couvrant tout l'écran -->
+    <img src="{{ url_for('static', filename='images/photo.png') }}" 
+         alt="A description of the library photo" 
+         class="homepage-image">
+
+    <!-- Message de bienvenue au centre -->
+    <div class="welcome-message">
+      <h1>Bienvenue dans notre Bibliothèque</h1>
     
-    <!-- Centered link on top of the image -->
-    <div class="centered-link">
-      <a href="/documents">Voir Les Documents</a>
     </div>
   </body>
 </html>

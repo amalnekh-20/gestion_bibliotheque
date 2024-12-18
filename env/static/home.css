@@ -4,6 +4,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  font-family: Arial, sans-serif;
 }
 
 /* Image styling */
@@ -17,24 +18,59 @@ html, body {
   z-index: -1;  /* Place the image behind other elements */
 }
 
-/* Center the link in the middle of the page */
-.centered-link {
+/* Navigation bar styling */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(55, 89, 209, 0.6); /* Semi-transparent background */
+  padding: 10px 0;
+  height: 50px;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  color: aliceblue;
+}
+.navbar {
+  display: flex;
+  justify-content: space-around;  /* Distribute items evenly */
+  align-items: center;  /* Vertically center the items */
+  padding: 10px 20px;
+}
+
+.navbar a {
+  color: #f7f7f7;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+/* Center the welcome message */
+.welcome-message {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 24px;
+  color: rgb(69, 154, 234);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
-  border-radius: 5px;
+.welcome-message h1 {
+  font-size: 3em;
+  margin: 0 0 10px;
 }
 
-a:hover {
-  background-color: rgba(0, 0, 0, 0.7);  /* Darken background on hover */
-}
+
