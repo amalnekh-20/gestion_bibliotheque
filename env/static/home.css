@@ -22,9 +22,14 @@ html, body {
 .navbar {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
   background-color: rgba(55, 89, 209, 0.6); /* Semi-transparent background */
   padding: 10px 0;
   height: 50px;
+=======
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+  padding: 10px 0;
+>>>>>>> 3be8cabb0ce6586ad32ee9c09a8f6879f23bf6d4
 }
 
 .navbar ul {
@@ -35,6 +40,7 @@ html, body {
 
 .navbar li {
   display: inline;
+<<<<<<< HEAD
   color: aliceblue;
 }
 .navbar {
@@ -46,6 +52,12 @@ html, body {
 
 .navbar a {
   color: #f7f7f7;
+=======
+}
+
+.navbar a {
+  color: white;
+>>>>>>> 3be8cabb0ce6586ad32ee9c09a8f6879f23bf6d4
   text-decoration: none;
   padding: 10px 20px;
   font-size: 18px;

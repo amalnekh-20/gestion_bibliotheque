@@ -124,6 +124,7 @@ def delete_document(document_id):
     db.session.commit()
     return redirect(url_for('list_documents'))
 
+<<<<<<< HEAD
 @app.route('/exemplaires', methods=['GET'])
 def list_exemplaires():
     query = request.args.get('query', '')  # Get the search query from the URL
@@ -146,6 +147,12 @@ def list_exemplaires():
 
     return render_template('exemplaire.html', exemplaires=exemplaires, query=query)
 
+=======
+@app.route('/exemplaires')
+def list_exemplaires():
+    exemplaires = Exemplaire.query.all()
+    return render_template('exemplaire.html', exemplaires=exemplaires)
+>>>>>>> 3be8cabb0ce6586ad32ee9c09a8f6879f23bf6d4
 @app.route('/add-exemplaire')
 def add_exemplaire():
     documents = Document.query.all()
